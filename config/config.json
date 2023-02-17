@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "kpis-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/kpis/KpisWebPart.js",
+          "manifest": "./src/webparts/kpis/KpisWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "KpisWebPartStrings": "lib/webparts/kpis/loc/{locale}.js"
+  }
+}

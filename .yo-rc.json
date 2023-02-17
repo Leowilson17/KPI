@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "kpi",
+    "libraryId": "4096bc1b-7da0-4316-8868-bb0e9316f1c7",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "KPI",
+    "solutionShortDescription": "KPI description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

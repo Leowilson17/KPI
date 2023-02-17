@@ -1,0 +1,66 @@
+@import '~office-ui-fabric-react/dist/sass/References.scss';
+.mainContianer{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  .headerRippon{
+    width: 100%;
+    background-color: #ffe49f;
+    height: 90px;
+    h4{
+      margin: 17px 0;
+      text-align: center;
+      font-weight: 600;
+      // font-family: Avenir;
+    color: #074f57;
+    font-size: 24px;
+    }
+  }
+  .kpiboxFlex{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .box{
+    // width: auto;
+    width: 380px;
+    margin: 24px;
+    height: 130px;
+    // border: 1px solid gray;
+    padding: 8px;
+    span{
+      font-size: 18px; 
+      font-family: Avenir;
+      color: #074f57;
+      font-weight: 400;
+      margin-bottom: 25px;
+    }
+    .flexContainer{
+      display: flex;
+      // align-items: center;
+      // margin: 30px 0;
+    }
+    img{
+      width: 60px;
+      height: 60px;
+    }
+    .rightText{
+      text-align: right;
+      margin-left: 10px;
+      b{
+        font-weight: 400;
+        font-size: 42px;
+        color: #074f57;
+        // font-family: Avenir;
+      }
+    }
+    p{
+      margin: 4px 0;
+      font-size: 18px;
+      color: #074f57;
+      // font-family: Avenir;
+    }
+  }
+}
