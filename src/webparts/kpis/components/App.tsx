@@ -8,87 +8,63 @@ const addImg = require("../../../ExternalRef/Assests/add.png");
 const calendarImg = require("../../../ExternalRef/Assests/calendar.png");
 const arrowImg = require("../../../ExternalRef/Assests/aim.png");
 
-
 function Kpi() {
   interface IData {
-  Title:string;
-  Img:any;
-  Number:string;
-  Average:string;
+    Title: string;
+    Img: any;
+    Number: string;
+    Average: string;
   }
-  const obj = [
-    {
-      content: "Travelers on Assignment(TOA)",
-      img: addImg,
-      num: "3,496",
-      averageofWeek: "4 week Average 3,435",
-    },
-    {
-      content: "Net Weeks Booked(NWB)",
-      img: calendarImg,
-      num: "3,518",
-      averageofWeek: "4 week Average 3,369",
-    },
-    {
-      content: "Q4 TOA Goal 3,800",
-      img: arrowImg,
-      num: "92.0%",
-      averageofWeek: "%to Q4 TOA Goal",
-    },
-  ];
 
   // state variable
-  const[data,setdata]=useState<IData[]>([]);
+  const [data, setdata] = useState<IData[]>([]);
 
   // function declaration
   function getdatafromconfigureList() {
-    const dataObj: IData[] =[];
+    let dataObj: IData[] = [];
     sp.web.lists
       .getByTitle("KPIConfigList")
-      .items.get()
+      .items.orderBy("Created", false)
+      .get()
       .then((val) => {
-        val.map((data)=>{
+        val.map((data) => {
           var Pic = data.Image;
           var getPic = JSON.parse(Pic).serverRelativeUrl;
-          dataObj.push(
-            {
-              Title:data.Title,
-              Img:getPic,
-              Number:data.Number,
-              Average:data.Description
-            }
-          )
-        })
+          dataObj.push({
+            Title: data.Title,
+            Img: getPic,
+            Number: data.Number,
+            Average: data.Description,
+          });
+        });
+        dataObj = dataObj.slice(0, 3);
         setdata(dataObj);
-        
-        
       })
       .catch((error) => {
-        err(error,"getdatafromconfigureList");
+        err(error, "getdatafromconfigureList");
       });
   }
 
-// error handling function 
-function err(msg,val){
-  console.log(msg,val);
-  
-}
+  // error handling function
+  function err(msg, val) {
+    console.log(msg, val);
+  }
 
   // use effect
-useEffect(()=>{
-getdatafromconfigureList();
-},[]);
+  useEffect(() => {
+    getdatafromconfigureList();
+  }, []);
 
   return (
     <div className={styles.mainContianer}>
-      <div className={styles.headerRippon}>
+      {/* <div className={styles.headerRippon}>
         <h4>Host Healthcare KPIs | Week Ending October 22,2022</h4>
-      </div>
+      </div> */}
       <div className={styles.kpiboxFlex}>
         {data.map((value) => {
           return (
             <div className={styles.box}>
-              <p style={{marginBottom:24}}>{value.Title}</p>
+              <p style={{ marginBottom: 24 }}>{value.Title}</p>
               <div className={styles.flexContainer}>
                 <img src={value.Img} alt="" />
                 <div className={styles.rightText}>
