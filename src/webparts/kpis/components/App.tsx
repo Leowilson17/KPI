@@ -14,17 +14,23 @@ function Kpi() {
     Img: any;
     Number: string;
     Average: string;
+    Order: string;
   }
 
   // state variable
   const [data, setdata] = useState<IData[]>([]);
+
+  function comparison(a, b) {
+    return a.Order - b.Order;
+  }
 
   // function declaration
   function getdatafromconfigureList() {
     let dataObj: IData[] = [];
     sp.web.lists
       .getByTitle("KPIConfigList")
-      .items.orderBy("Created", false)
+      .items.orderBy("Modified", false)
+      .top(3)
       .get()
       .then((val) => {
         val.map((data) => {
@@ -35,10 +41,11 @@ function Kpi() {
             Img: getPic,
             Number: data.Number,
             Average: data.Description,
+            Order: data.orderNumber,
           });
         });
-        dataObj = dataObj.slice(0, 3);
-        setdata(dataObj);
+        var sortedData = dataObj.sort(comparison);
+        setdata([...sortedData]);
       })
       .catch((error) => {
         err(error, "getdatafromconfigureList");
